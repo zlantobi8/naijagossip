@@ -615,6 +615,7 @@ async function renderBanner(slicepost) {
   const categoryClass = document.getElementById('categoryClass')
   categoryClass.className = `tag-base ${slicepost[randomAdsession].categoryClass}`
   const adTitle = document.getElementById('adTitle')
+  categoryClass.innerHTML=slicepost[randomAdsession].category
   adTitle.innerHTML = slicepost[randomAdsession].title
   const asDescription = document.getElementById('asDescription');
   asDescription.innerHTML = `${slicepost[randomAdsession].description.slice(0, 200)} .....`
