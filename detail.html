@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News Detail</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <!-- Your global styles (optional) -->
+  <link rel="stylesheet" href="assets/css/vendor.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <style>
+    /* Minimal page-specific styling */
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+
+    .wrapper {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 15px;
+      font-size: .9rem;
+      color: #999;
+      margin-bottom: 25px
+    }
+
+    .meta i {
+      margin-right: 5px;
+      color: #007bff
+    }
+
+    .hero {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 30px
+    }
+
+    .content {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      margin-bottom: 40px
+    }
+
+    .author {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 40px
+    }
+
+    .share {
+      display: flex;
+      gap: 20px;
+      font-size: 1.4rem
+    }
+
+    .share a {
+      color: #555;
+      transition: color .3s
+    }
+
+    .share a:hover {
+      color: #007bff
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1 class="title" id="newsTitle">Loading…</h1>
+
+    <div class="meta">
+      <span><i class="fa fa-clock-o"></i><time id="newsDate">--.--.----</time></span>
+      <span><i class="fa fa-user"></i> <strong id="newsAuthor">Unknown</strong></span>
+      <span><i class="fa fa-tag"></i> <span id="newsCategory">General</span></span>
+    </div>
+
+    <img id="newsImage" src="assets/img/placeholder.png" alt="news image" class="hero">
+
+    <div class="content" id="newsContent">
+      <p>Loading article…</p>
+    </div>
+
+    <div class="author" id="newsAuthorLine"></div>
+
+    <div class="share">
+      <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+      <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+      <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+    </div>
+    <br><br>
+    <div class="container">
+  <h3 id="latestNews">Related news</h3>
+  <div class="row" id="relatedPostsRow"></div>
+</div>
+
+
+  </div>
+
+
+
+  <!-- Optional horizontal line -->
+  <div class="full-width-hr" ></div>
+
+
+
+  <div class="footer-area bg-black pd-top-95">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6">
+          <div class="widget">
+            <h5 class="widget-title">ABOUT US</h5>
+            <div class="widget_about">
+              <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+              <ul class="social-area social-area-2 mt-4">
+                <li><a class="facebook-icon" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="twitter-icon" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="youtube-icon" href="#"><i class="fa fa-youtube-play"></i></a></li>
+                <li><a class="instagram-icon" href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a class="google-icon" href="#"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="widget widget_tag_cloud">
+            <h5 class="widget-title">TAGS</h5>
+            <div class="tagcloud">
+              <a href="#">Updates</a>
+              <a href="#">Leaked news</a>
+              <a href="#">Hit Map</a>
+              <a href="#">Hot News</a>
+              <a href="#">Trending News</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="widget">
+            <h5 class="widget-title">CONTACTS</h5>
+            <ul class="contact_info_list">
+              <li><i class="fa fa-map-marker"></i>Nigeria</li>
+              <li><i class="fa fa-phone"></i> +234 9166654979</li>
+              <li><i class="fa fa-envelope-o"></i> Info@website.com <br> Support@mail.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <ul class="widget_nav_menu">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <p>Copyright ©2025 <a href="#">Naija Gossip</a></p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="assets/js/detail.js"></script>
+    <script src="assets/js/modified.js"></script>
+</body>
+
+</html>

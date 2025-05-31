@@ -1,0 +1,163 @@
+{
+  "latestPosts": [
+    {
+      "image": "assets/img/post/9.png",
+      "category": "Fashion",
+      "date": "08.22.2020",
+      "title": "A Comparison of the Sony FE 85mm f/1.4 GM and Sigma",
+      "description": "When choosing the perfect portrait lens, photographers often find themselves torn between the Sony FE 85mm f/1.4 GM and the Sigma 85mm f/1.4 DG HSM Art. In this comparison, we examine build quality, image sharpness, autofocus speed, and value for money. Learn how each lens performs in real-world portrait sessions, low-light environments, and video use.",
+      "author": "Jane Doe",
+      "readingTime": "6 min"
+    }
+  ],
+  "secondColumnPosts": [
+    {
+      "image": "assets/img/post/10.png",
+      "date": "08.22.2020",
+      "title": "Rocket Lab will resume launches no sooner than",
+      "description": "After a temporary halt caused by an in-flight anomaly, Rocket Lab has announced its next launch window will open no sooner than August 27th. The company is performing a thorough investigation into the incident to ensure all systems meet safety standards. The next mission, titled 'I Can't Believe It's Not Optical', will carry commercial payloads into low-Earth orbit.",
+      "author": "John Smith",
+      "readingTime": "3 min"
+    },
+    {
+      "image": "assets/img/post/11.png",
+      "date": "08.22.2020",
+      "title": "P2P Exchanges in Africa Pivot: Nigeria and Kenya the",
+      "description": "With regulatory uncertainty surrounding centralized exchanges in Africa, peer-to-peer (P2P) platforms have seen a surge in adoption. Nigeria and Kenya are leading this revolution as more users seek alternatives for accessing Bitcoin and stablecoins. This article explores the reasons behind this shift, its implications for financial inclusion, and what it means for local fintech innovation.",
+      "author": "Aisha Bello",
+      "readingTime": "5 min"
+    }
+  ],
+  "thirdColumnPosts": [
+    {
+      "image": "assets/img/post/12.png",
+      "date": "08.22.2020",
+      "title": "Bitmex Restricts Ontario Residents as Mandated by",
+      "description": "Bitmex has announced it will restrict access for residents of Ontario, Canada, following new regulatory guidelines issued by the Ontario Securities Commission. The restriction is part of a broader compliance initiative as Bitmex seeks to avoid legal complications while expanding its derivatives platform.",
+      "author": "Michael O'Neil",
+      "readingTime": "4 min"
+    },
+    {
+      "image": "assets/img/post/13.png",
+      "date": "08.22.2020",
+      "title": "The Bitcoin Network Now 7 Plants Worth of Power",
+      "description": "Recent studies show that the energy consumption of the Bitcoin network now rivals that of seven entire power plants. As mining operations intensify, environmental concerns are mounting. This article delves into the implications of Bitcoin's carbon footprint and explores potential solutions such as renewable mining and energy efficiency.",
+      "author": "Satoshi Kim",
+      "readingTime": "7 min"
+    }
+    
+  ],
+  "popularNews": [
+    {
+      "image": "assets/img/post/list/1.png",
+      "date": "08.22.2020",
+      "title": "Himachal Pradesh rules in order to allow tourists"
+    },
+    {
+      "image": "assets/img/post/list/2.png",
+      "date": "08.22.2020",
+      "title": "Himachal Pradesh rules in order to allow tourists"
+    }
+  ],
+  "trendingPosts": [
+    {
+      "image": "assets/img/post/list/1.png",
+      "date": "08.22.2020",
+      "title": "Important to rate more liquidity",
+      "description": "Liquidity is the backbone of financial markets. This post examines why increasing liquidity is crucial for asset stability, investor confidence, and smoother market operations—especially in the age of decentralized finance (DeFi).",
+      "author": "Clara White",
+      "readingTime": "2 min"
+    },
+    {
+      "image": "assets/img/post/list/2.png",
+      "date": "08.22.2020",
+      "title": "Sounds like John got the Josh",
+      "description": "An internet inside joke or just the latest viral moment? This piece explores the origins of a hilarious meme and how it reflects today’s online humor culture, featuring trending tweets, community reactions, and more.",
+      "author": "Liam Green",
+      "readingTime": "1 min"
+    },
+    {
+      "image": "assets/img/post/list/3.png",
+      "date": "08.22.2020",
+      "title": "Grayscale's and Bitcoin Trusts",
+      "description": "Grayscale's Bitcoin and Ethereum Trusts have attracted institutional investors in droves. Find out how these investment vehicles work, what their fees are, and whether they truly reflect the value of underlying crypto assets.",
+      "author": "Nina Patel",
+      "readingTime": "4 min"
+    },
+    {
+      "image": "assets/img/post/list/4.png",
+      "date": "08.22.2025",
+      "title": "Sounds like John got the Josh",
+      "description": "Another spin on the 'John got the Josh' meme. Explore how a small comment snowballed into a multi-platform viral trend, prompting hilarious parodies and remixes across TikTok, Twitter, and Reddit.",
+      "author": "Liam Green",
+      "readingTime": "1 min"
+    },
+    {
+      "image": "assets/img/post/list/5.png",
+      "date": "08.22.2020",
+      "title": "Grayscale's and Bitcoin Trusts",
+      "description": "An updated report on Grayscale’s asset performance and investor behavior reveals shifts in sentiment. This article also covers how the trusts compare to direct Bitcoin holdings.",
+      "author": "Nina Patel",
+      "readingTime": "4 min"
+    }
+  ],
+  "mainPosts": [
+    {
+      "image": "assets/img/post/1.png",
+      "category": "Tech",
+      "categoryClass": "tag-blue",
+      "title": "The FAA will test drone detecting technologies in airports this year",
+      "date": "08.22.2020",
+      "description": "To ensure airspace safety and combat illegal drone activity near airports, the FAA is set to launch trials of drone detection systems in collaboration with private tech firms. The testing aims to identify rogue drones and integrate detection data into airport security workflows.",
+      "author": "Emily Chen",
+      "readingTime": "5 min"
+    },
+
+
+
+
+
+
+
+    {
+      "image": "assets/img/post/2.png",
+      "category": "Food",
+      "categoryClass": "tag-orange",
+      "title": "Rocket Lab will resume launches no sooner than August 27th",
+      "date": "08.22.2020",
+      "description": "Rocket Lab’s CEO confirms plans to resume launch operations following a brief stand-down due to a technical fault. The company is doubling down on quality assurance and mission safety ahead of the next satellite deployment from their New Zealand launchpad.",
+      "author": "John Smith",
+      "readingTime": "3 min"
+    },
+    {
+      "image": "assets/img/post/3.png",
+      "category": "Tech",
+      "categoryClass": "tag-blue",
+      "title": "Google Drive flaw may attackers fool you into install malware",
+      "date": "08.22.2020",
+      "description": "A recently discovered vulnerability in Google Drive allows attackers to disguise malware as legitimate documents. Cybersecurity experts are urging users to verify file origins and avoid opening suspicious files—even from known contacts.",
+      "author": "Ravi Kapoor",
+      "readingTime": "4 min"
+    },
+    {
+      "image": "assets/img/post/4.png",
+      "category": "Food",
+      "categoryClass": "tag-orange",
+      "title": "TikTok will sue the US over threatened ban",
+      "date": "08.22.2025",
+      "description": "TikTok, owned by Chinese company ByteDance, is preparing to sue the United States government over its threatened app ban. The lawsuit argues the ban is politically motivated and violates due process, raising questions about internet freedom and data sovereignty.",
+      "author": "Olivia White",
+      "readingTime": "6 min"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
