@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,34 +43,50 @@
       background-color: white;
       margin-bottom: 20px;
     }
-    /* Adjust these padding values to match your container's padding */
-.full-width-hr {
-  border: none;
-  height: 1px;
-  background-color: white;
-  margin: 40px 0; /* vertical spacing */
-  padding: 0 50px; /* horizontal padding same as container */
-  box-sizing: content-box; /* so padding adds space inside */
-  width: 100vw; /* full viewport width */
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
 
+    /* Adjust these padding values to match your container's padding */
+    .full-width-hr {
+      border: none;
+      height: 1px;
+      background-color: white;
+      margin: 40px 0;
+      /* vertical spacing */
+      padding: 0 50px;
+      /* horizontal padding same as container */
+      box-sizing: content-box;
+      /* so padding adds space inside */
+      width: 100vw;
+      /* full viewport width */
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
   </style>
 </head>
+
 <body>
   <div class="container" style="padding-top:30px;">
     <h3 id="latestNews" style="color: white;">Latest News</h3>
     <div class="row" id="postsRow">
       <!-- News items will be dynamically inserted here -->
     </div>
+    <script type="text/javascript">
+      atOptions = {
+        'key': '36ec6b843148e2ffd67ec1ed29f277a6',
+        'format': 'iframe',
+        'height': 90,
+        'width': 728,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript"
+      src="//www.highperformanceformat.com/36ec6b843148e2ffd67ec1ed29f277a6/invoke.js"></script>
   </div>
 
   <!-- Optional horizontal line -->
-  <div class="full-width-hr" ></div>
+  <div class="full-width-hr"></div>
 
 
 
@@ -80,7 +97,8 @@
           <div class="widget">
             <h5 class="widget-title">ABOUT US</h5>
             <div class="widget_about">
-              <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+              <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                ipsum ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
               <ul class="social-area social-area-2 mt-4">
                 <li><a class="facebook-icon" href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a class="twitter-icon" href="#"><i class="fa fa-twitter"></i></a></li>
@@ -130,4 +148,5 @@
   <script src="assets/js/vendor.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>
