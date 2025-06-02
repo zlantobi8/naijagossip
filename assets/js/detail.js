@@ -55,7 +55,7 @@ const query1 = encodeURIComponent(`{
   }
 }`);
 
-const url = `https://oja7rnse.api.sanity.io/v2023-01-01/data/query/production?query=${query1}`;
+const url1= `https://oja7rnse.api.sanity.io/v2023-01-01/data/query/production?query=${query1}`;
 
 function slugify(text) {
     return text
@@ -74,7 +74,7 @@ function getSlugFromUrl() {
 
 const slug = getSlugFromUrl();
 
-fetch(url, {
+fetch(url1, {
     headers: {
         Authorization: 'Bearer skFVqxDGIrVdfEbrpfCX9ekGY6ROEGyXFnGEXwgYCGdh9d2boyveO7pfLLsvKAbuliqy7HRjYIdUXKasLuzfVIh9GZBdWynB8fSSZLULnsqxbFSkoDm4TVPfLZatx5B1CG8G2Fvtk3L0ozg6ruDKuKHdGljaha0ZAPwZlPrC8rcznmUXj29I'
     }
@@ -99,8 +99,13 @@ fetch(url, {
             return;
         }
 
+    
+           document.getElementById('newsTitle').textContent = post.title;
+        
+
         // Render main post
-        document.getElementById('newsTitle').textContent = post.title;
+        document.getElementById('newsTitle1').textContent = post.title;
+  
         document.getElementById('newsDate').textContent = post.date || '--';
         document.getElementById('newsAuthor').textContent = post.author || 'Anonymous';
         document.getElementById('newsCategory').textContent = post.category || 'General';
