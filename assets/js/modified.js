@@ -312,7 +312,7 @@ function renderMainPosts(posts) {
 
 
 
-    titleLink.href = `/news/${generateSlug(post.title)}`;
+    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
 
 
     titleLink.textContent = post.title;
@@ -353,7 +353,7 @@ function renderMainPosts(posts) {
     el.addEventListener('click', () => {
       const post = posts[index];  // Now post is defined properly
       const slug = generateSlug(post.title);
-    window.location.href = `/news/${slug}`;
+      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
     });
   });
 
@@ -417,8 +417,7 @@ function renderLatestPosts(posts) {
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
     const titleLink = document.createElement('a');
-    titleLink.href = `/news/${generateSlug(post.title)}`;
-
+    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
