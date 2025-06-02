@@ -37,7 +37,7 @@ function renderAllPosts(posts) {
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
     const titleLink = document.createElement('a');
-    titleLink.href = '/detail.html';
+   titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
@@ -46,14 +46,13 @@ function renderAllPosts(posts) {
     const ul = document.createElement('ul');
     const li = document.createElement('li');
 
-    const rawDate =post.date;
-const date = new Date(rawDate);
+    const rawDate = post.date;
+    const date = new Date(rawDate);
 
-const formatted = `${String(date.getDate()).padStart(2, '0')}-${
-  String(date.getMonth() + 1).padStart(2, '0')
-}-${date.getFullYear()}`;
+    const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
+      }-${date.getFullYear()}`;
 
-console.log(formatted); // 👉 "06-05-2025"
+    console.log(formatted); // 👉 "06-05-2025"
 
 
     li.innerHTML = `<i class="fa fa-clock-o"></i> ${formatted}`;
@@ -71,28 +70,25 @@ console.log(formatted); // 👉 "06-05-2025"
   });
 
   // Add click behavior
+  // Attach click listeners for viewing post
   postsRow.querySelectorAll('[data-index]').forEach(el => {
     const index = el.getAttribute('data-index');
     el.addEventListener('click', () => {
-      const currentPost = posts[index];
-      const related = posts.filter(post =>
-        post.category === currentPost.category && post.title !== currentPost.title
-      );
-      localStorage.setItem('relatedPost', JSON.stringify(related));
-      viewPost1(currentPost);
+      const post = posts[index];  // Now post is defined properly
+      const slug = generateSlug(post.title);
+      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
     });
   });
+
 }
 
 
-function viewPost1(post) {
-  localStorage.setItem('selectedPost', JSON.stringify(post));
 
-  const related = allPosts.filter(p =>
-    p.category === post.category
-  );
-
-  localStorage.setItem('relatedPost', JSON.stringify(related));
-  window.location.href = '/detail.html';
+function generateSlug(title) {
+  return title
+    .toLowerCase()               // convert to lowercase
+    .trim()                     // remove leading/trailing spaces
+    .replace(/[^\w\s-]/g, '')   // remove all non-word chars except spaces and hyphens
+    .replace(/\s+/g, '-')       // replace spaces with hyphens
+    .replace(/-+/g, '-');       // replace multiple hyphens with one
 }
-

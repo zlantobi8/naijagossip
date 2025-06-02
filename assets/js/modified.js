@@ -79,9 +79,14 @@ fetch(url, {
     const { mainPosts, latestPosts, secondColumnPosts, thirdColumnPosts, trendingPosts, popularNews } = data.result;
     allPosts = [...mainPosts, ...latestPosts, ...secondColumnPosts, ...thirdColumnPosts, ...trendingPosts, ...popularNews];
     mainpost1 = [...mainPosts];
+    const filteredPosts = allPosts.filter(post =>
+      post.title && post.title.toLowerCase().includes('sanitary conditions at unical')
+    );
+    console.log(filteredPosts);
+
     localStorage.setItem('allPosts', JSON.stringify(allPosts));
     renderBanner(mainPosts);
-    console.log(mainPosts[0]);
+
 
     renderMainPosts(mainPosts);
     renderLatestPosts(latestPosts);
@@ -93,6 +98,14 @@ fetch(url, {
   .catch(err => console.error('Error fetching Sanity data:', err));
 
 
+function generateSlug(title) {
+  return title
+    .toLowerCase()               // convert to lowercase
+    .trim()                     // remove leading/trailing spaces
+    .replace(/[^\w\s-]/g, '')   // remove all non-word chars except spaces and hyphens
+    .replace(/\s+/g, '-')       // replace spaces with hyphens
+    .replace(/-+/g, '-');       // replace multiple hyphens with one
+}
 
 
 document.getElementById("search-btn").addEventListener("click", performSearch);
@@ -224,7 +237,7 @@ function popularNews1(posts) {
     const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
       }-${date.getFullYear()}`;
 
-    console.log(formatted); // 👉 "06-05-2025"
+
 
 
 
@@ -235,7 +248,7 @@ function popularNews1(posts) {
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
     const titleLink = document.createElement('a');
-    titleLink.href = '/detail.html';
+    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
@@ -251,7 +264,8 @@ function popularNews1(posts) {
 
     // Add click event to the whole post block
     postWrapper.addEventListener('click', () => {
-      viewPost(post);
+      const slug = generateSlug(post.title);
+      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
     });
 
     newsContainer.appendChild(postWrapper);
@@ -295,7 +309,12 @@ function renderMainPosts(posts) {
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
     const titleLink = document.createElement('a');
-    titleLink.href = '/detail.html';
+
+
+
+    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
+
+
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
@@ -310,7 +329,7 @@ function renderMainPosts(posts) {
     const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
       }-${date.getFullYear()}`;
 
-    console.log(formatted); // 👉 "06-05-2025"
+
 
 
 
@@ -332,14 +351,12 @@ function renderMainPosts(posts) {
   postsRow.querySelectorAll('[data-index]').forEach(el => {
     const index = el.getAttribute('data-index');
     el.addEventListener('click', () => {
-      const currentPost = posts[index];
-      const related = posts.filter(p =>
-        p.category === currentPost.category && p.title !== currentPost.title
-      );
-      localStorage.setItem('relatedPost', JSON.stringify(related));
-      viewPost(currentPost);
+      const post = posts[index];  // Now post is defined properly
+      const slug = generateSlug(post.title);
+      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
     });
   });
+
 }
 
 
@@ -386,7 +403,7 @@ function renderLatestPosts(posts) {
     const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
       }-${date.getFullYear()}`;
 
-    console.log(formatted); // 👉 "06-05-2025"
+
 
 
 
@@ -400,7 +417,7 @@ function renderLatestPosts(posts) {
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
     const titleLink = document.createElement('a');
-    titleLink.href = '/detail.html';
+    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
@@ -410,7 +427,11 @@ function renderLatestPosts(posts) {
     postElement.appendChild(thumbDiv);
     postElement.appendChild(detailsDiv);
 
-    postElement.addEventListener('click', () => viewPost(posts[index]));
+    postElement.addEventListener('click', () => {
+      const slug = generateSlug(post[index].title);
+      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
+
+    });
     col.appendChild(postElement);
   });
 
@@ -455,7 +476,8 @@ function renderColumnPosts(posts) {
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
     const titleLink = document.createElement('a');
-    titleLink.href = '/detail.html';
+    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
+
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
@@ -464,7 +486,10 @@ function renderColumnPosts(posts) {
     postWrap.appendChild(thumbDiv);
     postWrap.appendChild(detailsDiv);
 
-    postWrap.addEventListener('click', () => viewPost(post));
+    postWrap.addEventListener('click', () => {
+      const slug = generateSlug(post[index].title);
+      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
+    });
 
     col.appendChild(postWrap);
   });
@@ -538,7 +563,7 @@ function renderTrending(posts) {
       const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
         }-${date.getFullYear()}`;
 
-      console.log(formatted); // 👉 "06-05-2025"
+
 
       li.innerHTML = `<i class="fa fa-clock-o"></i> ${formatted}`;
       ul.appendChild(li);
@@ -547,7 +572,7 @@ function renderTrending(posts) {
       const titleH6Inner = document.createElement('h6');
       titleH6Inner.className = 'title';
       const titleLink = document.createElement('a');
-      titleLink.href = '/detail.html';
+      titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
       titleLink.textContent = post.title;
       titleH6Inner.appendChild(titleLink);
 
@@ -561,7 +586,11 @@ function renderTrending(posts) {
 
       singlePostWrap.appendChild(mediaDiv);
 
-      singlePostWrap.addEventListener('click', () => viewPost(posts[chunkIndex * 4 + index]));
+      singlePostWrap.addEventListener('click', () => {
+
+        const slug = generateSlug(post.title);
+        window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
+      });
 
       itemDiv.appendChild(singlePostWrap);
     });
@@ -615,7 +644,7 @@ async function renderBanner(slicepost) {
   const categoryClass = document.getElementById('categoryClass')
   categoryClass.className = `tag-base ${slicepost[randomAdsession].categoryClass}`
   const adTitle = document.getElementById('adTitle')
-  categoryClass.innerHTML=slicepost[randomAdsession].category
+  categoryClass.innerHTML = slicepost[randomAdsession].category
   adTitle.innerHTML = slicepost[randomAdsession].title
   const asDescription = document.getElementById('asDescription');
   asDescription.innerHTML = `${slicepost[randomAdsession].description.slice(0, 200)} .....`
@@ -627,13 +656,15 @@ async function renderBanner(slicepost) {
   const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
     }-${date.getFullYear()}`;
 
-  console.log(formatted); // 👉 "06-05-2025"
 
 
 
   document.getElementById('adDate').innerHTML = formatted;
 
-  document.getElementById('adButton').addEventListener('click', (() => viewPost(slicepost[randomAdsession])))
+  document.getElementById('adButton').addEventListener('click', (() => {
+    const slug = generateSlug(slicepost[randomAdsession].title);
+    window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
+  }))
 }
 
 const today = new Date();
@@ -641,6 +672,5 @@ const today = new Date();
 const options = { weekday: 'long', month: 'long', day: 'numeric' };
 const formatted = today.toLocaleDateString(undefined, options);
 
-console.log(formatted); // 👉 "Saturday, May 31" (or whatever today's date is)
 
-const lateDate =document.getElementById('lateDate').innerHTML=formatted
+const lateDate = document.getElementById('lateDate').innerHTML = formatted
