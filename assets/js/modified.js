@@ -4,6 +4,7 @@ const newsContainer = document.getElementById('popular-news-list');
 const postsRow = document.getElementById('postsRow');
 const latestPostsRow = document.getElementById('latest-posts-row');
 const politicsPostsRow = document.getElementById('politics-posts-row');
+const education = document.getElementById('education-posts-row')
 const latestNews = document.getElementById('latestNews');
 
 const query = encodeURIComponent(`{
@@ -151,6 +152,10 @@ fetch(url, {
 
     renderPosts(sportsPost, 'latest-posts-row')
     renderPosts(politicsPost, 'politics-posts-row');
+    renderPosts(educationPost, 'education-posts-row')
+    renderPosts(healthPost,'health-posts-row')
+
+    renderPosts(technologyPost,'Technology-posts-row')
   })
   .catch(err => console.error('Error fetching Sanity data:', err));
 
@@ -416,7 +421,16 @@ function renderMainPosts(posts) {
 
 }
 
-const navbtn11 = document.getElementById('god12');
+const seeMorePolitics = document.getElementById('see-more-politics');
+const seeMoreSport = document.getElementById('see-more-sport');
+
+const seeMoreEducation = document.getElementById('see-more-education');
+const seeMoreTechnology = document.getElementById('see-more-technology');
+const seeMoreHealth = document.getElementById('see-more-health');
+
+
+
+
 function renderPosts(posts, containerId) {
 
   const container = document.getElementById(containerId);
@@ -428,14 +442,30 @@ function renderPosts(posts, containerId) {
   container.innerHTML = ''; // Clear previous posts
   const postsToRender = posts.slice(0, 8);
   postsToRender.forEach(post => {
-    navbtn11.addEventListener('click', async () => {
-
-
-
-      const slug = generateSlug(post.category);
+    seeMorePolitics.addEventListener('click', () => {
+      const slug = generateSlug('Politics');
       window.location.href = `/all-posts.html?slug=${slug}`;
+    });
 
+    seeMoreSport.addEventListener('click', () => {
+      const slug = generateSlug('Sport');
+      window.location.href = `/all-posts.html?slug=${slug}`;
+    });
 
+   
+    seeMoreEducation.addEventListener('click', () => {
+      const slug = generateSlug('Education');
+      window.location.href = `/all-posts.html?slug=${slug}`;
+    });
+
+    seeMoreTechnology.addEventListener('click', () => {
+      const slug = generateSlug('Technology');
+      window.location.href = `/all-posts.html?slug=${slug}`;
+    });
+
+    seeMoreHealth.addEventListener('click', () => {
+      const slug = generateSlug('Health');
+      window.location.href = `/all-posts.html?slug=${slug}`;
     });
     const col = document.createElement('div');
     col.className = 'col-lg-3 col-sm-6';

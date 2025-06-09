@@ -4096,6 +4096,11 @@ ul {
   /* or any smaller value */
 }
 
-#god12 {
-  cursor: pointer;
+#see-more-politics,
+#see-more-sport,
+#see-more-entertainment,
+#see-more-education,
+#see-more-technology,
+#see-more-health {
+    cursor: pointer;
 }
