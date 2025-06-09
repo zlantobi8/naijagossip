@@ -4047,43 +4047,55 @@ ul {
   font-size: 0.8rem;
   color: #666;
 }
-  #ad-leaderboard {
-    width: 728px;
-    height: 90px;
-    background-color: #f0f0f0; /* Light background to simulate an ad */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    border: 1px solid #ccc;
-    font-size: 18px;
-    color: #333;
-  }
 
-  @media (max-width: 767px) {
-    #ad-leaderboard {
-      width: 100%;
-      height: auto;
-      font-size: 14px;
-    }
-  }
-    .container1 {
+#ad-leaderboard {
+  width: 728px;
+  height: 90px;
+  background-color: #f0f0f0;
+  /* Light background to simulate an ad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  color: #333;
+}
+
+@media (max-width: 767px) {
+  #ad-leaderboard {
     width: 100%;
-    padding: 0 10%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
+    height: auto;
+    font-size: 14px;
   }
-  .line {
-    flex-grow: 1;
-    height: 2px;
-    background-color: rgb(0, 38, 255);
-  }
-  .text {
-    color: rgb(0, 0, 0);
-    padding: 0 15px;
-    font-weight: bold;
-    white-space: nowrap;
-  }.pd-top-70 {
-  padding-top: 50px !important; /* or any smaller value */
+}
+
+.container1 {
+  width: 100%;
+  padding: 0 10%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: rgb(0, 38, 255);
+}
+
+.text {
+  color: rgb(0, 0, 0);
+  padding: 0 15px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.pd-top-70 {
+  padding-top: 50px !important;
+  /* or any smaller value */
+}
+
+#god12 {
+  cursor: pointer;
 }

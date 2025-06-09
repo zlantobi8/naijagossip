@@ -140,7 +140,7 @@ fetch(url, {
     );
     console.log(filteredPosts);
 
-    localStorage.setItem('allPosts', JSON.stringify(allPosts));
+
     renderBanner(mainpost1);
 
 
@@ -416,16 +416,27 @@ function renderMainPosts(posts) {
 
 }
 
-
+const navbtn11 = document.getElementById('god12');
 function renderPosts(posts, containerId) {
+
   const container = document.getElementById(containerId);
+
   if (!container) {
     console.error(`Container with id "${containerId}" not found.`);
     return;
   }
   container.innerHTML = ''; // Clear previous posts
+  const postsToRender = posts.slice(0, 8);
+  postsToRender.forEach(post => {
+    navbtn11.addEventListener('click', async () => {
 
-  posts.forEach(post => {
+
+
+      const slug = generateSlug(post.category);
+      window.location.href = `/all-posts.html?slug=${slug}`;
+
+
+    });
     const col = document.createElement('div');
     col.className = 'col-lg-3 col-sm-6';
 
@@ -471,7 +482,14 @@ function renderPosts(posts, containerId) {
 
     col.appendChild(postWrap);
     container.appendChild(col);
+
   });
+
+
+
+
+
+
 }
 
 
