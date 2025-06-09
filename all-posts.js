@@ -100,7 +100,16 @@ function getSlugFromUrl() {
   return params.get('slug');
 }
 document.getElementById('title404').innerHTML = getSlugFromUrl()
-document.getElementById('slugTitle').innerHTML=`${getSlugFromUrl()} News` 
+
+
+function capitalizeFirstLetter(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+document.getElementById('slugTitle').innerHTML = `${capitalizeFirstLetter(getSlugFromUrl())} News`;
+
+
+
 const slug = getSlugFromUrl();
 fetch(url2, {
   headers: {
