@@ -153,9 +153,9 @@ fetch(url, {
     renderPosts(sportsPost, 'latest-posts-row')
     renderPosts(politicsPost, 'politics-posts-row');
     renderPosts(educationPost, 'education-posts-row')
-    renderPosts(healthPost,'health-posts-row')
+    renderPosts(healthPost, 'health-posts-row')
 
-    renderPosts(technologyPost,'Technology-posts-row')
+    renderPosts(technologyPost, 'Technology-posts-row')
   })
   .catch(err => console.error('Error fetching Sanity data:', err));
 
@@ -429,6 +429,32 @@ const seeMoreTechnology = document.getElementById('see-more-technology');
 const seeMoreHealth = document.getElementById('see-more-health');
 
 
+const gotopo = document.getElementById('gotopo').addEventListener('click', (e) => {
+  const slug = generateSlug('Politics');
+  window.location.href = `/all-posts.html?slug=${slug}`;
+
+})
+
+const gotosp = document.getElementById('gotosp').addEventListener('click', () => {
+  const slug = generateSlug('Sport');
+  window.location.href = `/all-posts.html?slug=${slug}`;
+});
+const gotoed = document.getElementById('gotoed').addEventListener('click', () => {
+  const slug = generateSlug('Education');
+  window.location.href = `/all-posts.html?slug=${slug}`;
+});
+
+
+const gotote = document.getElementById('gotote').addEventListener('click', () => {
+  const slug = generateSlug('Technology');
+  window.location.href = `/all-posts.html?slug=${slug}`;
+});
+
+const gotohe = document.getElementById('gotohe').addEventListener('click', () => {
+  const slug = generateSlug('Health');
+  window.location.href = `/all-posts.html?slug=${slug}`;
+});
+
 
 
 function renderPosts(posts, containerId) {
@@ -452,7 +478,7 @@ function renderPosts(posts, containerId) {
       window.location.href = `/all-posts.html?slug=${slug}`;
     });
 
-   
+
     seeMoreEducation.addEventListener('click', () => {
       const slug = generateSlug('Education');
       window.location.href = `/all-posts.html?slug=${slug}`;
