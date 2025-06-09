@@ -103,7 +103,7 @@ document.getElementById('title404').innerHTML = getSlugFromUrl()
 
 
 function capitalizeFirstLetter(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 document.getElementById('slugTitle').innerHTML = `${capitalizeFirstLetter(getSlugFromUrl())} News`;
@@ -143,14 +143,17 @@ fetch(url2, {
       return;
     }
 
-    // Find post by matching slug generated from title
-    const post = allPosts.find(p => slugify(p.category) === slug);
+    const matchingPosts = allPosts.filter(p => slugify(p.category) === slug);
+
+    if (matchingPosts.length === 0) {
+      document.getElementById('newsTitle').textContent = 'No articles found';
+      document.getElementById('newsContent').innerHTML = '<p>No posts match this category.</p>';
+      return;
+    }
+
+    renderAllPosts(matchingPosts);
 
 
-
-
-
-    renderAllPosts([post])
 
     function renderAllPosts(posts) {
       const postsRow = document.getElementById('postsRow');
