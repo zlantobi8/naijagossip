@@ -3,68 +3,91 @@
 const newsContainer = document.getElementById('popular-news-list');
 const postsRow = document.getElementById('postsRow');
 const latestPostsRow = document.getElementById('latest-posts-row');
-
+const politicsPostsRow = document.getElementById('politics-posts-row');
 const latestNews = document.getElementById('latestNews');
 
 const query = encodeURIComponent(`{
-  "mainPosts": *[_type == "mainPost"] | order(date desc) {
-  _id,
-  title,
-  "image": image.asset->url,
-  category,
-  categoryClass,
-  description,
-  author,
-  readingTime,
-  date
-},
-  "latestPosts": *[_type == "latestPost"] | order(date desc) {
-  _id,
-  title,
-  "image": image.asset->url,
-  category,
-  description,
-  author,
-  readingTime,
-  date
-},
-  "secondColumnPosts": *[_type == "secondColumnPost"] | order(date desc) {
-  _id,
-  title,
-  "image": image.asset->url,
-  description,
-  author,
-  readingTime,
-  date
-},
-  "thirdColumnPosts": *[_type == "thirdColumnPost"] | order(date desc) {
-  _id,
-  title,
-  "image": image.asset->url,
-  description,
-  author,
-  readingTime,
-  date
-},
-  "trendingPosts": *[_type == "trendingPost"] | order(date desc) {
-  _id,
-  title,
-  "image": image.asset->url,
-  description,
-  author,
-  readingTime,
-  date
-}
-,
-  "popularNews": *[_type == "popularNews"] | order(date desc) {
-  _id,
-  title,
-  "image": image.asset->url,
-  date
-}
+  "sportsPost": *[_type == "sportsPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  },
+  "educationPost": *[_type == "educationPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  },
+  "politicsPost": *[_type == "politicsPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  },
+  "technologyPost": *[_type == "technologyPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  },
+  "healthPost": *[_type == "healthPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  },
+  "celebrityPost": *[_type == "celebrityPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  },
+  "mainPost": *[_type == "mainPost"] | order(date desc) {
+    _id,
+    title,
+    "image": image.asset->url,
+    category,
+    categoryClass,
+    description,
+    author,
+    readingTime,
+    date
+  }
 }`);
 
-const url = `https://oja7rnse.api.sanity.io/v2023-01-01/data/query/production?query=${query}`;
+
+const url = `https://oja7rnse.api.sanity.io/v2023-01-01/data/query/production1?query=${query}`;
 
 let allPosts = [];
 let mainpost1 = []
@@ -76,24 +99,58 @@ fetch(url, {
   .then(res => res.json())
   .then(data => {
 
-    const { mainPosts, latestPosts, secondColumnPosts, thirdColumnPosts, trendingPosts, popularNews } = data.result;
-    allPosts = [...mainPosts, ...latestPosts, ...secondColumnPosts, ...thirdColumnPosts, ...trendingPosts, ...popularNews];
-    mainpost1 = [...mainPosts];
+    const {
+      mainPost = [],
+      sportsPost = [],
+      educationPost = [],
+      politicsPost = [],
+      technologyPost = [],
+      healthPost = [],
+      celebrityPost = [],
+    } = data.result || {};
+
+    allPosts = [
+      ...mainPost,
+      ...sportsPost,
+      ...educationPost,
+      ...politicsPost,
+      ...technologyPost,
+      ...healthPost,
+      ...celebrityPost,
+    ];
+
+    function getLatestPost(posts) {
+      if (!posts.length) return null;
+      // Sort descending by date and pick first
+      return posts
+        .slice()
+        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    }
+
+    const latestPolitics = getLatestPost(politicsPost);
+    const latestSports = getLatestPost(sportsPost);
+    const latestTechnology = getLatestPost(technologyPost);
+    const latestCelebrity = getLatestPost(celebrityPost);
+
+    // Filter out any null in case a category is empty
+    const mainpost1 = [latestPolitics, latestSports, latestTechnology, latestCelebrity].filter(Boolean);
+
     const filteredPosts = allPosts.filter(post =>
       post.title && post.title.toLowerCase().includes('sanitary conditions at unical')
     );
     console.log(filteredPosts);
 
     localStorage.setItem('allPosts', JSON.stringify(allPosts));
-    renderBanner(mainPosts);
+    renderBanner(mainpost1);
 
 
-    renderMainPosts(mainPosts);
-    renderLatestPosts(latestPosts);
-    renderColumnPosts(secondColumnPosts);
-    renderColumnPosts(thirdColumnPosts);
-    renderTrending(trendingPosts);
-    popularNews1(popularNews);
+    renderMainPosts(mainpost1);
+    // renderLatestPosts(latestPosts);
+
+    // renderColumnPosts(thirdColumnPosts);
+
+    renderPosts(sportsPost, 'latest-posts-row')
+    renderPosts(politicsPost, 'politics-posts-row');
   })
   .catch(err => console.error('Error fetching Sanity data:', err));
 
@@ -360,95 +417,24 @@ function renderMainPosts(posts) {
 }
 
 
-// Render latest posts in a column safely
-function renderLatestPosts(posts) {
-  latestPostsRow.innerHTML = ''; // clear before adding
-
-  const col = document.createElement('div');
-  col.className = 'col-lg-3 col-sm-6';
-
-  posts.forEach((post, index) => {
-    const postElement = document.createElement('div');
-    postElement.className = 'single-post-wrap style-overlay-bg';
-    postElement.setAttribute('data-index1', index);
-
-    const thumbDiv = document.createElement('div');
-    thumbDiv.className = 'thumb';
-    const img = document.createElement('img');
-    img.src = post.image;
-    img.alt = post.title || "latest post image";
-    thumbDiv.appendChild(img);
-
-    const detailsDiv = document.createElement('div');
-    detailsDiv.className = 'details';
-
-    const postMetaDiv = document.createElement('div');
-    postMetaDiv.className = 'post-meta-single mb-3';
-    const ul = document.createElement('ul');
-
-    const catLi = document.createElement('li');
-    const catLink = document.createElement('a');
-    catLink.className = 'tag-base tag-blue';
-    catLink.href = '#';
-    catLink.textContent = post.category;
-    catLi.appendChild(catLink);
-
-    const dateLi = document.createElement('li');
-    const dateP = document.createElement('p');
-
-
-    const rawDate = post.date;
-    const date = new Date(rawDate);
-
-    const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
-      }-${date.getFullYear()}`;
-
-
-
-
-
-    dateP.innerHTML = `<i class="fa fa-clock-o"></i> ${formatted}`;
-    dateLi.appendChild(dateP);
-
-    ul.appendChild(catLi);
-    ul.appendChild(dateLi);
-    postMetaDiv.appendChild(ul);
-
-    const titleH6 = document.createElement('h6');
-    titleH6.className = 'title';
-    const titleLink = document.createElement('a');
-    titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
-    titleLink.textContent = post.title;
-    titleH6.appendChild(titleLink);
-
-    detailsDiv.appendChild(postMetaDiv);
-    detailsDiv.appendChild(titleH6);
-
-    postElement.appendChild(thumbDiv);
-    postElement.appendChild(detailsDiv);
-
-    postElement.addEventListener('click', () => {
-      const slug = generateSlug(post[index].title);
-      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
-
-    });
-    col.appendChild(postElement);
-  });
-
-  latestPostsRow.appendChild(col);
-}
-
-// Reusable renderer for second and third column posts safely
-function renderColumnPosts(posts) {
-  const col = document.createElement('div');
-  col.className = 'col-lg-3 col-sm-6';
+function renderPosts(posts, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.error(`Container with id "${containerId}" not found.`);
+    return;
+  }
+  container.innerHTML = ''; // Clear previous posts
 
   posts.forEach(post => {
+    const col = document.createElement('div');
+    col.className = 'col-lg-3 col-sm-6';
+
     const postWrap = document.createElement('div');
     postWrap.className = 'single-post-wrap';
 
     const thumbDiv = document.createElement('div');
     thumbDiv.className = 'thumb';
+
     const img = document.createElement('img');
     img.src = post.image;
     img.alt = post.title || "column post image";
@@ -457,16 +443,8 @@ function renderColumnPosts(posts) {
     const btnDateP = document.createElement('p');
     btnDateP.className = 'btn-date';
 
-
-    const rawDate = post.date;
-    const date = new Date(rawDate);
-
-    const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
-      }-${date.getFullYear()}`;
-
-
-
-
+    const date = new Date(post.date);
+    const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`;
     btnDateP.innerHTML = `<i class="fa fa-clock-o"></i> ${formatted}`;
     thumbDiv.appendChild(btnDateP);
 
@@ -475,9 +453,9 @@ function renderColumnPosts(posts) {
 
     const titleH6 = document.createElement('h6');
     titleH6.className = 'title';
+
     const titleLink = document.createElement('a');
     titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
-
     titleLink.textContent = post.title;
     titleH6.appendChild(titleLink);
 
@@ -487,133 +465,12 @@ function renderColumnPosts(posts) {
     postWrap.appendChild(detailsDiv);
 
     postWrap.addEventListener('click', () => {
-      const slug = generateSlug(post[index].title);
-      window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
+      const slug = generateSlug(post.title);
+      window.location.href = `/detail.html?slug=${slug}`;
     });
 
     col.appendChild(postWrap);
-  });
-
-  latestPostsRow.appendChild(col);
-}
-
-function renderTrending(posts) {
-  const col = document.createElement('div');
-  col.className = 'col-lg-3 col-sm-6';
-
-  const trendingDiv = document.createElement('div');
-  trendingDiv.className = 'trending-post style-box';
-
-  const sectionTitle = document.createElement('div');
-  sectionTitle.className = 'section-title';
-  const titleH6 = document.createElement('h6');
-  titleH6.className = 'title';
-  titleH6.textContent = 'Trending News';
-  sectionTitle.appendChild(titleH6);
-
-  const postSlider = document.createElement('div');
-  postSlider.className = 'post-slider owl-carousel';
-
-  // Helper function to chunk posts array into arrays of 4 posts each
-  function chunkArray(array, size) {
-    const result = [];
-    for (let i = 0; i < array.length; i += size) {
-      result.push(array.slice(i, i + size));
-    }
-    return result;
-  }
-
-  // chunk posts into groups of 4
-  const chunks = chunkArray(posts, 4);
-
-  chunks.forEach((chunk, chunkIndex) => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'item';
-
-    chunk.forEach((post, index) => {
-      const singlePostWrap = document.createElement('div');
-      singlePostWrap.className = 'single-post-list-wrap';
-      singlePostWrap.setAttribute('data-index11', chunkIndex * 4 + index);
-
-      const mediaDiv = document.createElement('div');
-      mediaDiv.className = 'media';
-
-      const mediaLeft = document.createElement('div');
-      mediaLeft.className = 'media-left';
-      const img = document.createElement('img');
-      img.src = post.image;
-      img.alt = post.title || "trending post image";
-      mediaLeft.appendChild(img);
-
-      const mediaBody = document.createElement('div');
-      mediaBody.className = 'media-body';
-
-      const detailsDiv = document.createElement('div');
-      detailsDiv.className = 'details';
-
-      const postMeta = document.createElement('div');
-      postMeta.className = 'post-meta-single';
-      const ul = document.createElement('ul');
-      const li = document.createElement('li');
-
-
-      const rawDate = post.date;
-      const date = new Date(rawDate);
-
-      const formatted = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')
-        }-${date.getFullYear()}`;
-
-
-
-      li.innerHTML = `<i class="fa fa-clock-o"></i> ${formatted}`;
-      ul.appendChild(li);
-      postMeta.appendChild(ul);
-
-      const titleH6Inner = document.createElement('h6');
-      titleH6Inner.className = 'title';
-      const titleLink = document.createElement('a');
-      titleLink.href = `/detail.html?slug=${generateSlug(post.title)}`;
-      titleLink.textContent = post.title;
-      titleH6Inner.appendChild(titleLink);
-
-      detailsDiv.appendChild(postMeta);
-      detailsDiv.appendChild(titleH6Inner);
-
-      mediaBody.appendChild(detailsDiv);
-
-      mediaDiv.appendChild(mediaLeft);
-      mediaDiv.appendChild(mediaBody);
-
-      singlePostWrap.appendChild(mediaDiv);
-
-      singlePostWrap.addEventListener('click', () => {
-
-        const slug = generateSlug(post.title);
-        window.location.href = `/detail.html?slug=${slug}`; // Use query param or path as you want
-      });
-
-      itemDiv.appendChild(singlePostWrap);
-    });
-
-    postSlider.appendChild(itemDiv);
-  });
-
-  trendingDiv.appendChild(sectionTitle);
-  trendingDiv.appendChild(postSlider);
-  col.appendChild(trendingDiv);
-
-  latestPostsRow.appendChild(col);
-
-  // Initialize carousel after DOM ready
-  $(document).ready(function () {
-    $(".owl-carousel").owlCarousel({
-      items: 1,          // one group per slide
-      loop: false,       // loop or not
-      nav: true,
-      dots: false,
-      autoplay: false,
-      margin: 10,
-    });
+    container.appendChild(col);
   });
 }
 
